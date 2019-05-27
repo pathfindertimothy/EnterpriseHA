@@ -10,6 +10,7 @@ using BackEnd.Models;
 
 namespace BackEnd.Controllers
 {
+    [Authorize]
     public class ItemsController : Controller
     {
         private ShopDbContext db = new ShopDbContext();
@@ -37,7 +38,6 @@ namespace BackEnd.Controllers
         }
 
         // GET: Items/Create
-        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Categories");
@@ -47,7 +47,7 @@ namespace BackEnd.Controllers
         // POST: Items/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, Authorize]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ItemID,Title,Image,Details,CategoryID")] Item item)
         {
@@ -62,7 +62,6 @@ namespace BackEnd.Controllers
             return View(item);
         }
 
-        [Authorize]
         // GET: Items/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -82,7 +81,7 @@ namespace BackEnd.Controllers
         // POST: Items/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, Authorize]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ItemID,Title,Image,Details,CategoryID")] Item item)
         {
@@ -96,7 +95,6 @@ namespace BackEnd.Controllers
             return View(item);
         }
 
-        [Authorize]
         // GET: Items/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -113,7 +111,7 @@ namespace BackEnd.Controllers
         }
 
         // POST: Items/Delete/5
-        [HttpPost, Authorize, ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

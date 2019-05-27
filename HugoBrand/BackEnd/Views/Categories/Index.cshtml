@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BackEnd.Models.Category>
+﻿@model BackEnd.Models.Category
 
 @{
     ViewBag.Title = "Index";
@@ -10,22 +10,24 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Categories)
-        </th>
-        <th></th>
-    </tr>
+    
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Items)
+{
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Categories)
+            @Html.DisplayFor(modelItem => item.Details)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CategoryID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryID })
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.CategoryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })
         </td>
     </tr>
 }

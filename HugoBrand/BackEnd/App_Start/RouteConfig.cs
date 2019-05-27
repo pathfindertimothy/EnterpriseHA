@@ -12,6 +12,13 @@ namespace BackEnd
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute(
+                    name: "CategoryWithName",
+                    url: "Categories/{name}",
+                    defaults: new { controller = "Categories", action = "Index" }
+                );
+                
 
             routes.MapRoute(
                 name: "Default",

@@ -10,14 +10,18 @@ using BackEnd.Models;
 
 namespace BackEnd.Controllers
 {
+    
     public class CategoriesController : Controller
     {
         private ShopDbContext db = new ShopDbContext();
 
-        // GET: Categories
-        public ActionResult Index()
+        //GET: Categories
+        public ActionResult Index(string name)
         {
-            return View(db.Categories.ToList());
+            List<Item> items = new List<Item>();
+            Category category = db.Categories.Where(cat => cat.Categories == name).Include(cat => cat.Items).FirstOrDefault();
+            return View(category);
+            //return View(db.Categories.ToList());
         }
 
         // GET: Categories/Details/5
